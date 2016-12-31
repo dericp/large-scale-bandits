@@ -1,6 +1,6 @@
 import numpy as np
 
-alpha = 1
+alpha = 0.05
 
 article_data = dict()
 prev_choice = None
@@ -39,7 +39,7 @@ def recommend(time, user_features, choices):
 
         (M, b, M_inv, w) = article_data[choice]
         #print('choice = ' + str(choice))
-        #print('ucb = ' + str(w.dot(z)) + ' + ' + str(alpha * ((z.dot(M_inv).dot(z))**0.5)))
+        #print('ucb = ' + str(w.T.dot(z)) + ' + ' + str(alpha * ((z.T.dot(M_inv).dot(z))**0.5)))
         ucb = (w.T.dot(z) + alpha * ((z.T.dot(M_inv).dot(z))**0.5))[0][0]
         #print('ucb = ' + str(ucb))
         if ucb > curr_ucb:
@@ -51,7 +51,7 @@ def recommend(time, user_features, choices):
     prev_choice = curr_choice
     global prev_usr_features
     prev_usr_features = z
-    print('final choice = ' + str(curr_choice))
+    #print('final choice = ' + str(curr_choice))
 
     return curr_choice
 
