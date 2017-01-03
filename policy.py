@@ -1,6 +1,6 @@
 import numpy as np
 
-alpha = 0.05
+alpha = 0.27
 
 article_data = dict()
 prev_choice = None
